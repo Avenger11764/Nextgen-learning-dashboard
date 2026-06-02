@@ -18,7 +18,6 @@ export default function Sidebar({ activeSection, setActiveSection }: SidebarProp
 
   return (
     <>
-      {/* Desktop Sidebar */}
       <aside className="h-screen w-64 fixed left-0 top-0 hidden md:flex flex-col bg-surface border-r border-outline-variant/30 backdrop-blur-xl z-50">
         <div className="flex flex-col h-full py-6 px-4">
           <div className="mb-10 px-2">
@@ -68,7 +67,6 @@ export default function Sidebar({ activeSection, setActiveSection }: SidebarProp
         </div>
       </aside>
 
-      {/* Mobile Top App Bar */}
       <header className="fixed top-0 w-full z-40 md:hidden bg-surface/70 backdrop-blur-md border-b border-outline-variant/20 flex justify-between items-center px-6 h-16">
         <h1 className="font-display text-headline-lg-mobile font-bold text-primary">NEURAL_DASH</h1>
         <div className="flex items-center gap-4">
@@ -81,7 +79,6 @@ export default function Sidebar({ activeSection, setActiveSection }: SidebarProp
         </div>
       </header>
 
-      {/* Mobile Bottom Navigation */}
       <nav className="fixed bottom-0 left-0 w-full flex justify-around items-center h-20 pb-safe z-50 md:hidden bg-surface-container-lowest/80 backdrop-blur-2xl border-t border-outline-variant/30 rounded-t-xl shadow-[0_-4px_20px_rgba(192,193,255,0.05)]">
         {menuItems.map((item) => {
           const isActive = activeSection === item.id;

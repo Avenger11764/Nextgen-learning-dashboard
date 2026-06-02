@@ -1,7 +1,7 @@
 import { getCourses } from '@/lib/supabase';
 import DashboardContainer from '@/components/DashboardContainer';
 
-export const revalidate = 0; // Fetch fresh data on every page load to guarantee live Supabase syncing
+export const revalidate = 0;
 
 export default async function Page() {
   const { data: courses, error, isMock } = await getCourses();

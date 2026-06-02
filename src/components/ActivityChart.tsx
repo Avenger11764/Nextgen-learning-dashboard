@@ -3,12 +3,9 @@
 import { motion } from 'framer-motion';
 
 export default function ActivityChart() {
-  // 35 activity cells (7 cols x 5 rows)
   const cellCount = 35;
   
-  // Seed deterministic levels (0-3) for cells to prevent hydration mismatch
   const levels = Array.from({ length: cellCount }, (_, idx) => {
-    // A deterministic pseudo-random sequence using Math.sin (no hydration mismatch, looks like random noise)
     const x = Math.sin(idx + 1) * 10000;
     const rand = x - Math.floor(x);
     if (rand < 0.35) return 0;

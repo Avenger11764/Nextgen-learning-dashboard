@@ -49,7 +49,7 @@ body {
 }
 
 .glass-tile {
-  background: rgba(24, 24, 27, 0.7); /* Zinc-900 at 70% */
+  background: rgba(24, 24, 27, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(144, 143, 160, 0.1);
@@ -76,6 +76,5 @@ body {
   border-radius: 2px;
 }
 
-/* Hide scrollbar */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

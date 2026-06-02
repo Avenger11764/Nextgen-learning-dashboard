@@ -73,7 +73,7 @@ export default function DashboardContainer({ courses, isMock, dbError }: Dashboa
           </motion.div>
         );
 
-      case 'analytics': // Intelligence Page
+      case 'analytics':
         return (
           <motion.div
             variants={containerVariants}
@@ -94,7 +94,6 @@ export default function DashboardContainer({ courses, isMock, dbError }: Dashboa
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Stats Card */}
               <motion.div variants={itemVariants} className="glass-tile rounded-xl p-6 space-y-6">
                 <h3 className="font-headline-md font-bold text-white text-lg">Key Performance Metrics</h3>
                 
@@ -131,7 +130,6 @@ export default function DashboardContainer({ courses, isMock, dbError }: Dashboa
                 </div>
               </motion.div>
 
-              {/* Analysis Recommendations */}
               <motion.div variants={itemVariants} className="glass-tile rounded-xl p-6 space-y-4">
                 <h3 className="font-headline-md font-bold text-white text-lg">Focus Suggestions</h3>
                 
@@ -157,7 +155,7 @@ export default function DashboardContainer({ courses, isMock, dbError }: Dashboa
           </motion.div>
         );
 
-      case 'performance': // Performance Page
+      case 'performance':
         return (
           <motion.div
             variants={containerVariants}
@@ -177,7 +175,6 @@ export default function DashboardContainer({ courses, isMock, dbError }: Dashboa
               </p>
             </motion.div>
 
-            {/* Glowing Analytics Grid */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <motion.div variants={itemVariants} className="glass-tile rounded-lg p-5 border border-outline-variant/20 flex flex-col justify-between h-28">
                 <span className="text-[10px] font-label-caps text-on-surface-variant">FOCUS TIME</span>
@@ -197,7 +194,6 @@ export default function DashboardContainer({ courses, isMock, dbError }: Dashboa
               </motion.div>
             </div>
 
-            {/* Graphic visualizer representation */}
             <motion.div variants={itemVariants} className="glass-tile rounded-xl p-6 space-y-4">
               <h3 className="font-headline-md font-bold text-white text-lg">Weekly Performance Tracking</h3>
               <div className="h-48 rounded-lg bg-surface-container flex items-end gap-2 p-4 border border-outline-variant/10 relative overflow-hidden">
@@ -294,10 +290,8 @@ export default function DashboardContainer({ courses, isMock, dbError }: Dashboa
 
   return (
     <div className="flex min-h-screen bg-bg-dark text-on-surface font-display">
-      {/* Sidebar Navigation */}
       <Sidebar activeSection={activeSection} setActiveSection={setActiveSection} />
 
-      {/* Main Content Area */}
       <main className="flex-1 md:ml-64 pt-20 md:pt-0 min-h-screen">
         <div className="max-w-[1440px] mx-auto p-4 md:p-8">
           <AnimatePresence mode="wait">
@@ -311,7 +305,6 @@ export default function DashboardContainer({ courses, isMock, dbError }: Dashboa
               {renderContent()}
             </motion.div>
           </AnimatePresence>
-          {/* Mobile padding for bottom nav */}
           <div className="h-24 md:hidden" />
         </div>
       </main>

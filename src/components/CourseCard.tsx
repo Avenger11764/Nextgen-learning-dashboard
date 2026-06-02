@@ -9,7 +9,6 @@ interface CourseCardProps {
 }
 
 export default function CourseCard({ course, index }: CourseCardProps) {
-  // Map standard Lucide names to NEURAL_DASH Material Symbol names
   const getMaterialIcon = (name: string) => {
     switch (name.toLowerCase()) {
       case 'code2':
@@ -26,7 +25,6 @@ export default function CourseCard({ course, index }: CourseCardProps) {
     }
   };
 
-  // Generate course codes like PHY-302, CS-412, MAT-250
   const getCourseCode = (name: string, idx: number) => {
     const cleanName = name.replace(/[^a-zA-Z]/g, '').toUpperCase();
     const prefix = cleanName.slice(0, 3) || 'GEN';

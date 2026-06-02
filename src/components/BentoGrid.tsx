@@ -23,7 +23,6 @@ export default function BentoGrid({ courses, isMock, dbError }: BentoGridProps) 
     setMousePos({ x, y });
   };
 
-  // Stagger animation container
   const containerVariants = {
     hidden: { opacity: 0 },
     show: {
@@ -34,7 +33,6 @@ export default function BentoGrid({ courses, isMock, dbError }: BentoGridProps) 
     },
   };
 
-  // Card fade-in & float up animation
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     show: { 
@@ -55,7 +53,6 @@ export default function BentoGrid({ courses, isMock, dbError }: BentoGridProps) 
       initial="hidden"
       animate="show"
     >
-      {/* Database Warning/Status Banners */}
       {isMock && (
         <motion.div 
           variants={itemVariants}
@@ -98,16 +95,12 @@ export default function BentoGrid({ courses, isMock, dbError }: BentoGridProps) 
         </motion.div>
       )}
 
-      {/* Main Bento Grid */}
       <div className="bento-grid">
-        
-        {/* HERO TILE */}
         <motion.section 
           variants={itemVariants}
           onMouseMove={handleMouseMove}
           className="col-span-12 md:col-span-8 glass-tile active-glow rounded-xl p-6 md:p-8 flex flex-col justify-between relative overflow-hidden"
           style={{
-            // Dynamic radial glow overlay on mouse position
             backgroundImage: `
               linear-gradient(rgba(24, 24, 27, 0.75), rgba(24, 24, 27, 0.75)),
               radial-gradient(circle 220px at ${mousePos.x}px ${mousePos.y}px, rgba(192, 193, 255, 0.14), transparent)
@@ -154,7 +147,6 @@ export default function BentoGrid({ courses, isMock, dbError }: BentoGridProps) 
             </div>
           </div>
 
-          {/* Decorative brain icon */}
           <div className="absolute -right-10 -bottom-10 opacity-5 pointer-events-none">
             <span className="material-symbols-outlined text-[200px]" style={{ fontVariationSettings: "'wght' 100" }}>
               psychology
@@ -162,12 +154,10 @@ export default function BentoGrid({ courses, isMock, dbError }: BentoGridProps) 
           </div>
         </motion.section>
 
-        {/* ACTIVITY HEATMAP TILE */}
         <motion.div variants={itemVariants} className="col-span-12 md:col-span-4">
           <ActivityChart />
         </motion.div>
 
-        {/* ACTIVE MODULES HEADER */}
         <motion.div variants={itemVariants} className="col-span-12 flex items-center justify-between mt-4">
           <h3 className="font-headline-lg text-primary text-xl font-bold">Active Modules</h3>
           <button className="text-on-surface-variant font-label-caps text-xs hover:text-primary transition-colors flex items-center gap-2 cursor-pointer">
@@ -175,14 +165,12 @@ export default function BentoGrid({ courses, isMock, dbError }: BentoGridProps) 
           </button>
         </motion.div>
 
-        {/* DYNAMIC COURSE MODULES */}
         {courses.map((course, index) => (
           <motion.div key={course.id} variants={itemVariants} className="col-span-12 md:col-span-4">
             <CourseCard course={course} index={index} />
           </motion.div>
         ))}
 
-        {/* INTELLIGENCE BRIEF */}
         <motion.section 
           variants={itemVariants} 
           className="col-span-12 glass-tile rounded-xl p-6 md:p-8 mt-4"

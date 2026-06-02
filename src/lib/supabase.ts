@@ -43,7 +43,6 @@ export const MOCK_COURSES: Course[] = [
 
 export async function getCourses(): Promise<{ data: Course[]; error: string | null; isMock: boolean }> {
   if (!supabase) {
-    // If not configured, simulate database call delay and return mock data
     await new Promise((resolve) => setTimeout(resolve, 1500));
     return { data: MOCK_COURSES, error: null, isMock: true };
   }
@@ -55,7 +54,6 @@ export async function getCourses(): Promise<{ data: Course[]; error: string | nu
       .order('created_at', { ascending: true });
 
     if (error) {
-      console.error('Supabase fetch error:', error);
       return { data: [], error: error.message, isMock: false };
     }
 
@@ -65,7 +63,6 @@ export async function getCourses(): Promise<{ data: Course[]; error: string | nu
 
     return { data: data as Course[], error: null, isMock: false };
   } catch (err: any) {
-    console.error('Failed to fetch from Supabase:', err);
     return { data: [], error: err.message || 'Unknown network error', isMock: false };
   }
 }
