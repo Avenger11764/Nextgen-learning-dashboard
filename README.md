@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NEURAL_DASH | Next-Gen Learning Dashboard
 
-## Getting Started
+A futuristic, high-fidelity Student Learning Dashboard prototype built with Next.js (App Router), Supabase PostgreSQL database integration, Tailwind CSS v4.0, and hardware-accelerated spring-physics animations powered by Framer Motion.
 
-First, run the development server:
+## 🚀 Deployment Link (Vercel)
+- **Deployment URL**: [https://nextgen-learning-dashboard.vercel.app](https://nextgen-learning-dashboard.vercel.app) *(To deploy, connect this repository to your Vercel Dashboard)*
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Architecture & Design Choices
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Bento Grid Layout**: Optimized grid system utilizing CSS Grid configurations (`grid-cols-12`) that stack into a single column on mobile, collapse to icon layouts on tablets, and open to full grids on desktops.
+2. **NEURAL_DASH Theme**: Dark-mode only color palette based on high-contrast zinc backing accented by glowing violet and cyan highlights. Included interactive canvas mouse-tracking gradients.
+3. **Typography & Assets**: Leveraged Google Font APIs for `Geist` and `JetBrains Mono` and loaded Google Material Symbols Outlined icons dynamically.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## ⚡ Server / Client Component Split
 
-To learn more about Next.js, take a look at the following resources:
+- **Server Component (RSC) (Data Fetching)**: 
+  - `src/app/page.tsx` acts as the secure server boundary. It directly connects to the Supabase client using `@supabase/supabase-js` without exposing API keys to the browser, fetches the `courses` table database rows securely on the server side, and passes the parsed payload down.
+  - Implemented `export const revalidate = 0` to force Next.js cache revalidation, guaranteeing real-time database sync on refresh.
+  - Added a pulsing loader screen inside `src/app/loading.tsx` to handle loading states smoothly.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Client Components (Interactive Layout & Micro-interactions)**:
+  - `DashboardContainer.tsx` manages active section states and page transitions (`AnimatePresence`).
+  - `Sidebar.tsx` manages viewport collapses and active links (`layoutId` slide highlights).
+  - `BentoGrid.tsx` captures mouse-move vectors (`onMouseMove`) to translate coordinates into real-time custom radial gradient glows on the greeting card.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🧩 Challenges & Resolutions
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Hydration Mismatch Errors**:
+   - *Issue*: Generating random heatmap grids dynamically resulted in differing HTML structures between server pre-renders and client hydration.
+   - *Resolution*: Replaced `Math.random()` with a **sine-based deterministic hash** (`Math.sin(idx + 1) * 10000`). This maintains exact server-client parity (resolving warnings) while producing chaotic, organic heatmap noise.
+2. **Column Repeating Grids**:
+   - *Issue*: Using simple modulos (`% 7`) on a 7-column grid caused values to align exactly vertically, drawing solid stripes instead of a GitHub-style scattered heatmap.
+   - *Resolution*: Adjusted the mathematical mapping to coprime values to break repetitions.
+3. **Card Layout Auto-Stretching**:
+   - *Issue*: Flexible layouts caused the activity cells to expand into large rectangular blocks.
+   - *Resolution*: Wrapped the grid container inside a proportional aspect-locked box (`aspect-[7/5]`) capped at `max-w-[240px]`.
